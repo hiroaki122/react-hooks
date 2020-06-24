@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
+  const initialStates = {
+    name: "",
+    price: 1000,
+  };
+  const [name, setName] = useState(initialStates.name);
+  const [price, setPrice] = useState(initialStates.price);
 
+  const reset = () => {
+    setPrice(initialStates.price);
+    setName(initialStates.name);
+  };
   return (
     <>
-      <div>count: {count}</div>
-      <button onClick={increment}>+1</button>
-      <button onClick={decrement}>-1</button>
+      <p>
+        現在の{name}は、{price}円です。
+      </p>
+      <button onClick={() => setPrice(price + 1)}>+1</button>
+      <button onClick={() => setPrice(price - 1)}>-1</button>
+      <button onClick={reset}>reset</button>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
     </>
   );
 };
